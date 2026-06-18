@@ -26,7 +26,6 @@ module NotifyOnDone
 export @notify, set_webhook!
 
 using Dates
-import Printf: @sprintf
 
 # ----------------------------------------------------------------
 # Webhook URL の管理
@@ -122,12 +121,18 @@ end
 例: 3661.0 => "1時間 1分 1.0秒"
 """
 function _format_elapsed(seconds::Float64)::String
-    seconds < 60   && return @sprintf("%.2f 秒", seconds)
-    seconds < 3600 && return @sprintf("%d 分 %.1f 秒", floor(Int, seconds/60), seconds % 60)
-    h = floor(Int, seconds / 3600)
-    m = floor(Int, (seconds % 3600) / 60)
-    s = seconds % 60
-    return @sprintf("%d 時間 %d 分 %.1f 秒", h, m, s)
+    if seconds < 60
+        return "$(round(seconds, digits=2)) 秒"
+    elseif seconds < 3600
+        m = floor(Int, seconds / 60)
+        s = round(seconds % 60, digits=1)
+        return "$(m) 分 $(s) 秒"
+    else
+        h = floor(Int, seconds / 3600)
+        m = floor(Int, (seconds % 3600) / 60)
+        s = round(seconds % 60, digits=1)
+        return "$(h) 時間 $(m) 分 $(s) 秒"
+    end
 end
 
 # ----------------------------------------------------------------
@@ -138,18 +143,16 @@ end
     _send_slack(payload_json::String)
 
 Slack Incoming Webhook へJSONペイロードをPOSTします。
-`curl` を使うことで外部依存ゼロで動作します。
+curl を使います（Windows / macOS / Linux 共通）。
 """
 function _send_slack(payload_json::String)
     url = _webhook_url()
     try
-        cmd = `curl -s -o /dev/null -w "%{http_code}" -X POST -H "Content-Type: application/json" --data-binary $(payload_json) $(url)`
-        http_status = strip(read(cmd, String))
-        if http_status != "200"
-            @warn "Slack通知の送信に失敗しました (HTTP $http_status)"
-        end
+        null = Sys.iswindows() ? "NUL" : "/dev/null"
+        cmd = `curl -s -o $(null) -X POST -H "Content-Type: application/json" --data-binary $(payload_json) $(url)`
+        run(cmd)
     catch e
-        @warn "Slack通知の送信中にエラーが発生しました: $e"
+        @warn "Slack通知の送信に失敗しました: $e"
     end
 end
 
