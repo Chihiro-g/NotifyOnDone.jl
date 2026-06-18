@@ -1,0 +1,10 @@
+# Julia
+Manifest.toml
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+/docs/build/
+
+# 環境変数ファイル（絶対にコミットしない）
+.env
+*.env

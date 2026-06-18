@@ -1,0 +1,11 @@
+name = "NotifyOnDone"
+uuid = "fc083dcc-5dba-4e66-b153-bfdc24812998"
+authors = []
+version = "0.1.0"
+
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d3"
+
+[compat]
+julia = "1.6"
