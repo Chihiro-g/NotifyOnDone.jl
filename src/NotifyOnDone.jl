@@ -26,7 +26,7 @@ module NotifyOnDone
 export @notify, set_webhook!
 
 using Dates
-using Printf
+import Printf: @sprintf
 
 # ----------------------------------------------------------------
 # Webhook URL の管理
