@@ -1,0 +1,54 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <title>NotifyOnDone.jl icon</title>
+  <desc>Juliaの公式3色でベルを塗り分けたNotifyOnDone.jlパッケージアイコン</desc>
+
+  <defs>
+    <clipPath id="bell-clip">
+      <path d="M256 128
+               C192 128 150 173 146 240
+               L139 323
+               Q137 337 126 342
+               L126 357
+               L386 357
+               L386 342
+               Q375 337 373 323
+               L366 240
+               C362 173 320 128 256 128Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="226" fill="#1a1a2e"/>
+
+  <!-- Subtle ring -->
+  <circle cx="256" cy="256" r="173" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.08"/>
+
+  <!-- Bell body: left=red, middle=purple, right=green -->
+  <rect x="126" y="128" width="87" height="229" fill="#CB3C33" clip-path="url(#bell-clip)"/>
+  <rect x="213" y="128" width="86" height="229" fill="#9558B2" clip-path="url(#bell-clip)"/>
+  <rect x="299" y="128" width="87" height="229" fill="#389826" clip-path="url(#bell-clip)"/>
+
+  <!-- Bell rim -->
+  <rect x="126" y="342" width="87" height="15" fill="#CB3C33" clip-path="url(#bell-clip)"/>
+  <rect x="213" y="342" width="86" height="15" fill="#9558B2" clip-path="url(#bell-clip)"/>
+  <rect x="299" y="342" width="87" height="15" fill="#389826" clip-path="url(#bell-clip)"/>
+
+  <!-- Bell top knob -->
+  <circle cx="256" cy="124" r="17" fill="#9558B2"/>
+
+  <!-- Bell clapper -->
+  <rect x="246" y="352" width="20" height="29" rx="10" fill="#ffffff" opacity="0.85"/>
+
+  <!-- Checkmark circle -->
+  <circle cx="341" cy="219" r="39" fill="#1a1a2e"/>
+  <circle cx="341" cy="219" r="35" fill="#389826"/>
+  <polyline points="324,219 336,232 360,203"
+            fill="none" stroke="#ffffff" stroke-width="6"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Bottom label -->
+  <text x="256" y="444" text-anchor="middle"
+        font-family="monospace" font-size="21" font-weight="700"
+        fill="#ffffff" opacity="0.9" letter-spacing="1">NotifyOnDone.jl</text>
+
+</svg>

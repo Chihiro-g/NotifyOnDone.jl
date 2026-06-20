@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/icon.svg" width="200"/>
+</p>
+
 # NotifyOnDone.jl
 
 Juliaの長時間計算が終わったら（またはエラーになったら）Slackに通知する `@notify` マクロです。
